@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify clone</title>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+<style>
+    body {
+        color: white;
+        background-color: black;
+        margin: 0px 0px;
+        padding: 0px 0px;
+        background-repeat: no-repeat;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500px;
+    }
+
+    .left {
+        /* border: 2px solid red; */
+        position: fixed;
+        display: inline-block;
+        background-color: rgb(18, 18, 18);
+        width: 18%;
+        padding: 23px 5px;
+        margin: -9px -1px;
+        z-index: +1;
+    }
+
+    .left img {
+        width: 100px;
+        margin: 2px 3px;
+        cursor: pointer;
+    }
+
+    .below {
+        /* border: 2px solid purple; */
+        position: fixed;
+        left: 0px;
+        top: 49px;
+        padding: 23px 5px;
+        margin: -9px -1px;
+        background-color: rgb(18, 18, 18);
+        width: 18%;
+        border-radius: 15px;
+    }
+
+    .below span {
+        position: relative;
+        top: 7px;
+        left: 5px;
+        padding: 7px 0px;
+    }
+
+    .below a {
+        color: gray;
+        font-size: 25px;
+        text-decoration: none;
+    }
+
+    .below a:hover {
+        color: white;
+    }
+
+    .library {
+        /* border: 2px solid yellow; */
+        display: inline-block;
+        position: fixed;
+        margin: 70px 5px;
+        padding: 28px 5px;
+        left: -5px;
+        top: 100px;
+        background-color: rgb(18, 18, 18);
+        width: 18%;
+        border-radius: 15px;
+    }
+
+    .library a {
+        position: relative;
+        margin: 11px 5px;
+        top: 6px;
+        text-decoration: none;
+        color: gray;
+    }
+
+    .library a:hover {
+        color: white;
+    }
+
+    .library span {
+        position: relative;
+        font-size: 25px;
+        top: -25px;
+    }
+
+    .library h2 {
+        position: relative;
+        top: -21px;
+        font-size: 16px;
+    }
+
+    .library h4 {
+        position: relative;
+        top: -25px;
+        font-size: 11px;
+    }
+
+    .button1 {
+        position: relative;
+        border-radius: 50px;
+        top: -26px;
+        border: none;
+        font-family: "Montserrat", sans-serif;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -1px;
+    }
+
+    .button2 {
+        position: relative;
+        border-radius: 50px;
+        top: -26px;
+        border: none;
+        font-family: "Montserrat", sans-serif;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -1px;
+    }
+
+    .policy {
+        /* border: 2px solid orange; */
+        position: fixed;
+        bottom: 130px;
+        padding: 60px 5.5px;
+        margin: -98px 44px;
+        left: -45px;
+        width: 18%;
+        background-color: rgb(18, 18, 18);
+    }
+
+    .policy ul {
+        padding: 0px 0px;
+    }
+
+    .policy li {
+        display: inline-block;
+    }
+
+    .policy ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 11px;
+        padding: 0px 7px;
+    }
+
+    .button3 {
+        color: white;
+        margin: 22px 2px;
+        border: 1px solid white;
+        border-radius: 30px;
+        background-color: transparent;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+    .button3:hover {
+        font-size: 16px;
+        border: 2px solid white;
+    }
+
+    .maincontainer {
+        position: relative;
+        background-color: rgb(21, 21, 21);
+        top: 63px;
+        left: 293px;
+        width: 1219px;
+        height: 1300px;
+    }
+
+    .topbar {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        background-color: rgb(18, 18, 18);
+        top: -15px;
+        padding: 20px 0px;
+        right: 5px;
+        border-radius: 15px;
+        width: 1222px;
+        z-index: +5;
+    }
+
+    .topbar .forwardprevious button {
+        position: relative;
+        color: gray;
+        cursor: not-allowed;
+        width: 50px;
+        height: 44px;
+        border-radius: 100%;
+        font-size: 28px;
+        border: 0px;
+        background-color: black;
+        right: -30px;
+        bottom: -20px;
+    }
+
+    .topbar .signinlogin {
+        /* position: relative; */
+        display: flex;
+        align-items: center;
+        right: 28px;
+        margin: 0px 10px;
+    }
+
+    .signinlogin ul {
+        list-style: none;
+    }
+
+    .signinlogin ul li {
+        display: inline-block;
+        margin: 0px 8px;
+        width: 70px;
+    }
+
+    .signinlogin ul li a {
+        color: gray;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .signinlogin ul li a:hover {
+        color: white;
+        font-size: 17px;
+    }
+
+    .signinlogin button {
+        background-color: white;
+        color: black;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 14px 34px;
+        border: 0px;
+        border-radius: 40px;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+
+    .signinlogin button:hover {
+        background-color: #f2f2f2;
+        font-size: 19px;
+    }
+
+    .spotify-playlists {
+        padding: 0px 0px;
+    }
+
+    .spotify-playlists h2 {
+        display: inline-block;
+        position: relative;
+        top: 0px;
+        left: 13px;
+        letter-spacing: -1px;
+        font-weight: 700;
+        font-size: 22px;
+    }
+
+    .spotify-playlists h3 {
+        display: inline-block;
+        position: relative;
+        top: 20px;
+        left: 10px;
+        letter-spacing: -1px;
+        font-weight: 700;
+        font-size: 22px;
+    }
+
+    .spotify-playlists .list {
+        display: flex;
+        gap: 20px;
+        overflow: hidden;
+        flex-wrap: wrap;
+    }
+
+    .spotify-playlists .item {
+        background-color: rgb(18, 18, 18);
+        width: 15%;
+        border-radius: 15px;
+        padding: 7px 0px;
+    }
+
+    .spotify-playlists .item:hover {
+        background-color: rgb(39, 39, 39);
+    }
+
+    .item img {
+        position: relative;
+        width: 85%;
+        border-radius: 12px;
+        top: 7px;
+        right: -14px;
+    }
+
+    .item .play {
+        position: relative;
+
+    }
+
+    .play span {
+        position: absolute;
+        right: 23px;
+        top: -60px;
+        padding: 18px;
+        background-color: #1db954;
+        border-radius: 100%;
+        opacity: 0%;
+        transition: all ease 0.4s;
+    }
+
+    .item:hover .play span {
+        opacity: 1;
+        transform: translateY(-20px);
+    }
+
+    .item h4 {
+        position: relative;
+        font-size: 16px;
+        margin-bottom: 10px;
+        font-weight: 800;
+        right: -14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .item p {
+        position: relative;
+        color: #989898;
+        font-size: 13px;
+        line-height: 16px;
+        font-weight: 600;
+        margin: 0px 15px;
+    }
+
+    hr {
+        position: relative;
+        border-color: #636363;
+        margin: 221px 80px 0px;
+        left: -50px;
+    }
+
+    .preview {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to right, #ae2896, #509bf5);
+        padding: 15px, 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .preview h4 {
+        position: relative;
+        font-weight: 700;
+        font-size: 14px;
+        left: 0px;
+        top: 10px;
+        margin: 10px 9px;
+    }
+
+    .preview p {
+        font-size: 14px;
+        font-weight: 500px;
+        margin: 10px 9px;
+    }
+
+    .preview button {
+        font-size: 23px;
+        border-radius: 20px;
+        margin: 21px 30px;
+        border: none;
+        letter-spacing: 0px;
+        cursor: pointer;
+        font-weight: 500;
+    }
+
+    .preview button:hover {
+        font-size: 24px;
+        font-weight: bold;
+    }
+</style>
+
+<body>
+    <header class="header">
+        <!-- for logo-->
+        <div class="left">
+            <img src="images/Spotify Logo.png" alt="logo">
+        </div>
+        <!-- for search and home -->
+        <div class="below">
+            <div>
+                <a href="">
+                    <span class="fa fa-home"></span>
+                    <span>Home</span>
+                </a>
+            </div>
+            <div>
+                <a href="">
+                    <span class="fa fa-search"></span>
+                    <span>Search</span>
+                </a>
+            </div>
+        </div>
+        <div class="library">
+            <div>
+                <a href="">
+                    <span class="fa fa-book"></span>
+                    <span>Your library</span>
+                </a>
+            </div>
+            <div>
+                <h2>Create your first playlist</h2>
+                <h4>It's easy we will help you</h4>
+                <button class="button1">Create playlist</button>
+            </div>
+            <div>
+                <h2>Let's find some podcast to follow</h2>
+                <h4>We'll keep you upadated on new episodes</h4>
+                <button class="button2">Browse podcasts</button>
+            </div>
+        </div>
+        <div class="policy">
+            <ul>
+                <li>
+                    <a href="">Legal</a>
+                </li>
+                <li>
+                    <a href="">Safety & Privacy Center</a>
+                </li>
+                <li>
+                    <a href="">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="">Cookies</a>
+                </li>
+                <li>
+                    <a href="">About Ads</a>
+                </li>
+                <li>
+                    <a href="">Accessibility</a>
+                </li>
+            </ul>
+            <span class="fa fa-earth"></span>
+            <button class="button3">English</button>
+        </div>
+    </header>
+    <div class="maincontainer">
+        <div class="topbar">
+            <div class="forwardprevious">
+                <button type="button" class="fa fas fa-chevron-left"></button>
+                <button type="button" class="fa fas fa-chevron-right"></button>
+            </div>
+            <div class="signinlogin">
+                <ul>
+                    <li>
+                        <a href="">Sign up</a>
+                    </li>
+                </ul>
+                <button type="button">Log in</button>
+            </div>
+        </div>
+        <div class="spotify-playlists">
+            <h2>Spotify Playlists</h2>
+            <div class="list">
+                <div class="item">
+                    <img src="images/Pop Smoke Radio .jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Pop Smoke Radio</h4>
+                    <p>With Lil Tjay, Polo G, Roddy Ricch and more</p>
+                </div>
+                <div class="item">
+                    <img src="images/UTOPIA.jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>UTOPIA</h4>
+                    <p>2023 . Travis Scott</p>
+                </div>
+                <div class="item">
+                    <img src="images/dibbya subba.jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Dibya Subba</h4>
+                    <p>Top 10 songs of dibya subba.</p>
+                </div>
+                <div class="item">
+                    <img src="images/i love my 90's.jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>I Love my 90's H...</h4>
+                    <p>Real rap music from golden era.</p>
+                </div>
+                <div class="item">
+                    <img src="images/Chirag Khadka.jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Chirag Khadka</h4>
+                    <p>5:55 best songs ever.</p>
+                </div>
+                <div class="item">
+                    <img src="images/albatross.jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Albatross</h4>
+                    <p>Albatross . 2010</p>
+                </div>
+            </div>
+        </div>
+        <div class="spotify-playlists">
+            <h3>Vibes</h3>
+            <div class="list">
+                <div class="item">
+                    <img src="images/green day.jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>Green Day</h4>
+                    <p>2004 . Green Day</p>
+                </div>
+                <div class="item">
+                    <img src="images/John Rai.jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>John Rai</h4>
+                    <p>Best songs of John rai.</p>
+                </div>
+                <div class="item">
+                    <img src="images/roclk.jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>ROCK CLASSICS</h4>
+                    <p>Rock legends & epic songs that continue to inspire...</p>
+                </div>
+                <div class="item">
+                    <img src="images/The Elements Radio .jpg" alt="">
+                    <div class="play">
+                        <span class="fa fa-play"></span>
+                    </div>
+                    <h4>The Elements Radio</h4>
+                    <p>With Rockheads, Monkey Temple Nepal, The Edge Band and...</p>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="preview">
+        <div class="text">
+            <h4>Preview of Spotify</h4>
+            <P>
+                Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.
+            </P>
+        </div>
+        <div class="button">
+            <button type="button">Sign up free</button>
+        </div>
+    </div>
+</body>
+
+</html>
